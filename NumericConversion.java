@@ -168,40 +168,46 @@ public class NumericConversion {
         Scanner scnr = new Scanner(System.in);
 
         do {
-            System.out.println("Decoding Menu \n------------- \n1. Decode hexadecimal \n2. Decode binary \n3. Convert binary to hexadecimal \n4. Quit \n\nPlease enter an option: ");
+            System.out.println("Decoding Menu \n------------- \n1. Decode hexadecimal \n2. Decode binary \n3. Convert binary to hexadecimal \n4. Convert hexadecimal to decimal \n5: Quit \n\nPlease enter an option: ");
             userChoice = scnr.nextInt();
 
-                switch(userChoice) {
-                    case 1: {
-                        System.out.println("Please enter the numeric string to convert: ");
-                        String numDecode = scnr.next();
-                        int decodeAbs = numDecode.length();
-                            if (decodeAbs == 1) {
-                                char charDecode = (numDecode.charAt(0));                        //https://www.javatpoint.com/java-string-to-char
-                                System.out.println("Result: " + hexCharDecode(charDecode));
-                            }
-                            else if (decodeAbs > 1) {
-                                System.out.println("Result: " + hexStringDecode(numDecode));
-                            }
-                        break;
+            switch(userChoice) {
+                case 1: {
+                    System.out.println("Please enter the numeric string to convert: ");
+                    String numDecode = scnr.next();
+                    int decodeAbs = numDecode.length();
+                    if (decodeAbs == 1) {
+                        char charDecode = (numDecode.charAt(0));                        //https://www.javatpoint.com/java-string-to-char
+                        System.out.println("Result: " + hexCharDecode(charDecode));
                     }
-                    case 2: {
-                        System.out.println("Please enter the numeric string to convert: ");
-                        String numDecode = scnr.next();
-                        System.out.println("Result: " + binaryStringDecode(numDecode));
-                        break;
+                    else if (decodeAbs > 1) {
+                        System.out.println("Result: " + hexStringDecode(numDecode));
                     }
-                    case 3: {
-                        System.out.println("Please enter the numeric string to convert: ");
-                        String numDecode = scnr.next();
-                        System.out.println("Result: " + (binaryToHex(numDecode)));
-                        break;
-                    }
-                    default: {
-                        System.out.println("Goodbye!");
-                        break;
-                    }
+                    break;
                 }
-        } while (userChoice != 4);
+                case 2: {
+                    System.out.println("Please enter the numeric string to convert: ");
+                    String numDecode = scnr.next();
+                    System.out.println("Result: " + binaryStringDecode(numDecode));
+                    break;
+                }
+                case 3: {
+                    System.out.println("Please enter the numeric string to convert: ");
+                    String numDecode = scnr.next();
+                    System.out.println("Result: " + (binaryToHex(numDecode)));
+                    break;
+                }
+                case 4: {
+                    System.out.println("Please enter the numeric string to convert: ");
+                    String numDecode = scnr.next();
+                    System.out.println("Result: " + hexStringDecode(numDecode));
+                    break;
+                }
+                default: {
+                    System.out.println("Goodbye!");
+                    break;
+                }
+            }
+        } while (userChoice != 5);
     }
 }
