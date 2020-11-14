@@ -17,7 +17,8 @@ public class Pakudex {
 
 
     public int getSize() {
-        int size = pakuMorphList.size();
+        int size = 0;
+        size = pakuMorphList.size();
         return size;
     }
 
@@ -51,12 +52,15 @@ public class Pakudex {
         int attack;
         int defense;
         int speed;
+        int[] statsGot = null;
 
-        attack = paku.getAttack();
-        defense = paku.getDefense();
-        speed = paku.getSpeed();
+        try {
+            attack = paku.getAttack();
+            defense = paku.getDefense();
+            speed = paku.getSpeed();
 
-        int[] statsGot = new int[] {attack, defense, speed};
+            statsGot = new int[]{attack, defense, speed};
+        } catch(Exception ignored) {}
 
         return statsGot;
     }
@@ -67,15 +71,14 @@ public class Pakudex {
         int size = getSize();
         String[] speciesArray = getSpeciesArray();
         boolean sorted = false;
-        int i = 0;
         int j = 0;
 
         do {
             int swaps = 0;
-            for (i = i; i + 1 < size; i++) {
+            for (int i = 0; i + 1 < size; i++) {
 
-                char a = speciesArray[i].charAt(0);
-                char b = speciesArray[i + 1].charAt(0);
+                char a = speciesArray[i].toLowerCase().charAt(0);
+                char b = speciesArray[i + 1].toLowerCase().charAt(0);
                 if (a > b) {
                     tempPakSpot = speciesArray[i];
                     speciesArray[i] = speciesArray[i + 1];
@@ -84,8 +87,8 @@ public class Pakudex {
                 }
                 else if (a == b) {
                     for (j = j; j < size; j++) {
-                        a = speciesArray[i].charAt(j);
-                        b = speciesArray[i + 1].charAt(j);
+                        a = speciesArray[i].toLowerCase().charAt(j);
+                        b = speciesArray[i + 1].toLowerCase().charAt(j);
 
                         if (a > b) {
                             tempPakSpot = speciesArray[i];
@@ -114,6 +117,10 @@ public class Pakudex {
             added = true;
             paku = new Pakuri(species);
             pakuMorphList.add(species);
+        }
+
+        if (duplicate(species, getSpeciesArray())) {
+            added = false;
         }
 
         return added;
